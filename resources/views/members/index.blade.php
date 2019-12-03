@@ -102,7 +102,7 @@
                     type:"post",
                     enctype:"multipart/form-data",
                     data: data,
-                    url: "/members/store",
+                    url: "/members",
                     processData: false,
                     contentType: false,
                     cache:false,
@@ -167,7 +167,7 @@
                     ,
                     error:function(e){
                         console.log(e);
-                    alert(e);
+                    alert("정보를 전부 기입해 주세요.");
                     }
                 });
         }
@@ -176,9 +176,10 @@
             var editDiv = document.getElementById('editDiv'+id);
             var form  = $('#editForm'+id)[0];
             var data = new FormData(form);
+            console.log(form);
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
             $.ajax({
-                    type:"POST",
+                    type:"post",
                     url: '/members/' +id+'/update',
                     data: data,
                     processData:false,
