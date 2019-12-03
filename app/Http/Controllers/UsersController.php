@@ -41,6 +41,10 @@ class UsersController extends Controller
             'confirm_code' => $confirmCode,
         ]);
 
+        # 메일 보내려면 필요함
+        # 이벤트로 분류해서 Mail::send를 별도로 관리
+        event(new \App\Events\UserCreated($user));
+
         # 플래시 메시지와 리디렉션 응답이 여러 번 반복되므로 이렇게 한다
         return $this->respondCreated( # 아래 쪽 확인
             '가입하신 메일 계정으로 가입 확인 메일을 보내드렸습니다.

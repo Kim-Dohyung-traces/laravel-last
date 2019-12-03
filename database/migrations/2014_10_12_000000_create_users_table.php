@@ -25,6 +25,9 @@ class CreateUsersTable extends Migration
             # add_confirm_code
             $table->string('confirm_code', 60)->nullable(); # 활성화 코드 ...
             $table->boolean('activated')->default(0); # 가입 확인 여부
+
+            # add last_login
+            $table->timestamp('last_login')->nullable();
         });
     }
 
