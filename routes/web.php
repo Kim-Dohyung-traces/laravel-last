@@ -67,26 +67,26 @@ Route::post('auth/reset', [
 
 
 
-/* 태그 */
-Route::get('tags/{slug}/articles', [ //{{slug}}값에 들어온 것은 index메서드로 넘김
-    'as' => 'tags.articles.index',
-    'uses' => 'ArticlesController@index',
-]);
+// /* 태그 */
+// Route::get('tags/{slug}/articles', [ //{{slug}}값에 들어온 것은 index메서드로 넘김
+//     'as' => 'tags.articles.index',
+//     'uses' => 'ArticlesController@index',
+// ]);
 
-/* 좋아요 */
-Route::post('comments/{comment}/votes',[
-    'as' => 'comments.vote',
-    'uses' => 'CommentsController@vote',
-]);
-
-
+// /* 좋아요 */
+// Route::post('comments/{comment}/votes',[
+//     'as' => 'comments.vote',
+//     'uses' => 'CommentsController@vote',
+// ]);
 
 
 
-// 드롭존 라이브러리의 파일 업로드 요청을 받을 별도의 라우트
-Route::resource('attachments', 'AttachmentsController', ['only' => ['store', 'destroy']]);
-Route::get('attachments/{file}', 'AttachmentsController@show');
 
-// 댓글
-Route::resource('comments', 'CommentsController', ['only' => ['update', 'destroy']]);
-Route::resource('articles.comments', 'CommentsController', ['only' => 'store']);
+
+// // 드롭존 라이브러리의 파일 업로드 요청을 받을 별도의 라우트
+// Route::resource('attachments', 'AttachmentsController', ['only' => ['store', 'destroy']]);
+// Route::get('attachments/{file}', 'AttachmentsController@show');
+
+// // 댓글
+// Route::resource('comments', 'CommentsController', ['only' => ['update', 'destroy']]);
+// Route::resource('articles.comments', 'CommentsController', ['only' => 'store']);
