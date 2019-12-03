@@ -37,7 +37,9 @@ class PasswordsController extends Controller
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
         ]);
 
-        // event(new \App\Events\PasswordRemindCreated($email, $token));
+        # 아이디 만드는 메일 발송을 응용해서 작업
+        # 비밀번호 바꾸는 이벤트를 생성
+        event(new \App\Events\PasswordRemindCreated($email, $token));
         return $this->respondSuccess(
             '비밀번호 바꾸는 방법을 담은 이메일을 발송했습니다. 메일 박스를 확인해 주세요.'
         );
@@ -72,23 +74,13 @@ class PasswordsController extends Controller
             '비밀번호를 바꾸었습니다. 새로운 비밀번호로 로그인하세요.'
         );
     }
-    /**
-     * Make an error response.
-     *
-     * @param     $message
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     protected function respondError($message)
     {
         flash()->error($message);
         return back()->withInput(\Request::only('email'));
     }
-    /**
-     * Make a success response.
-     *
-     * @param $message
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     protected function respondSuccess($message)
     {
         flash($message);

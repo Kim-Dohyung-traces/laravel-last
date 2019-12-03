@@ -27,7 +27,7 @@ class UsersEventListener
             # 현재 클래스의 콜백을 등록
             __CLASS__ . '@onUserCreated'
         );
-        // 코드 23-30 에서 추가
+        # 코드 23-30 유저 비밀번호 초기화
         $events->listen(
             \App\Events\PasswordRemindCreated::class,
             __CLASS__ . '@onPasswordRemindCreated'
@@ -50,7 +50,7 @@ class UsersEventListener
         );
     }
 
-    // 코드 23-30 에서 추가
+    # 코드 23-30 유저 비밀번호 초기화 관련 메서드
     public function onPasswordRemindCreated(\App\Events\PasswordRemindCreated $event)
     {
         \Mail::send(

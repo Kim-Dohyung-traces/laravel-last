@@ -16,7 +16,6 @@ Route::get('auth/register', [ //1 경로 auth/register은
     'as' => 'users.create', //3 users.create로 호출할 수 있음.
     'uses' => 'UsersController@create', //2 UsersController의 create메서드를 사용하며
 ]); //=> users.create 사용은 resources/views/layouts/partial/navigation.blade.php를 참고
-
 Route::post('auth/register', [
     'as' => 'users.store',
     'uses' => 'UsersController@store',
@@ -40,7 +39,7 @@ Route::get('auth/logout', [
     'uses' => 'SessionsController@destroy',
 ]);
 
-/* 비밀번호 초기화 */
+# 비밀번호 초기화
 Route::get('auth/remind', [
     'as' => 'remind.create',
     'uses' => 'PasswordsController@getRemind',
@@ -53,6 +52,13 @@ Route::get('auth/reset/{token}', [
     'as' => 'reset.create',
     'uses' => 'PasswordsController@getReset',
 ]);
+Route::post('auth/reset', [
+    'as' => 'reset.store',
+    'uses' => 'PasswordsController@postReset',
+]);
+
+
+
 
 /* 태그 */
 Route::get('tags/{slug}/articles', [ //{{slug}}값에 들어온 것은 index메서드로 넘김
