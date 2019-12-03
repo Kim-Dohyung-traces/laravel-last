@@ -2,16 +2,23 @@
 
 # 장준혁 숙제 메인페이지 home 유도
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
 # 장준혁 숙제 메인페이지 home 유도
 
 
+# 정인식 조원소개
+Route::resource('members','MembersController');
+Route::post('members/{id}/update/','MembersController@update');
+Route::post('members/store','MembersController@store');
+Route::get('members/{id}/ajax','MembersController@ajaxIndex');
+# 정인식 조원소개
 
 
-/* 사용자 등록 */
+
+# 사용자 등록
 Route::get('auth/register', [ //1 경로 auth/register은
     'as' => 'users.create', //3 users.create로 호출할 수 있음.
     'uses' => 'UsersController@create', //2 UsersController의 create메서드를 사용하며
@@ -25,7 +32,7 @@ Route::get('auth/confirm/{code}', [
     'uses' => 'UsersController@confirm',
 ]);
 
-/* 사용자 인증 */
+# 사용자 인증
 Route::get('auth/login', [
     'as' => 'sessions.create',
     'uses' => 'SessionsController@create',
