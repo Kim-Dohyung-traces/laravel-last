@@ -4,7 +4,6 @@
 Route::get('/', function () {
     return redirect()->route('home');
 });
-
 Route::get('/home', 'HomeController@index')->name('home');
 # 장준혁 숙제 메인페이지 home 유도
 

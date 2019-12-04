@@ -9,12 +9,14 @@
     </div>
 
     <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-        <input type="email" name="email" class="form-control" placeholder="이메일" value="{{ old('email') }}" autofocus />
+        <!-- <input type="email" name="email" class="form-control" placeholder="이메일" value="{{ old('email') }}" autofocus /> -->
+        <input type="email" name="email" class="form-control" placeholder="이메일" value="admin@mail.com" autofocus />
         {!! $errors->first('email', '<span class="form-error">:message</span>') !!}
     </div>
 
     <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-        <input type="password" name="password" class="form-control" placeholder="비밀번호">
+        <!-- <input type="password" name="password" class="form-control" placeholder="비밀번호"> -->
+        <input type="password" name="password" class="form-control" placeholder="비밀번호" value="secret">
         {!! $errors->first('password', '<span class="form-error">:message</span>')!!}
     </div>
 

@@ -10,26 +10,6 @@
     <!-- SEO -->
     <meta name="description" content="{{ config('project.description') }}">
 
-    <!-- Facebook Meta -->
-    <meta property="og:title" content="{{ config('app.name') }}">
-    <meta property="og:image" content="">
-    <meta property="og:type" content="Website">
-    <meta property="og:author" content="">
-
-    <!-- Google Meta -->
-    <meta itemprop="name" content="">
-    <meta itemprop="description" content="{{ config('project.description') }}">
-    <meta itemprop="image" content="">
-    <meta itemprop="author" content="" />
-
-    <!-- Twitter Meta-->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="">
-    <meta name="twitter:title" content="{{ config('app.name') }}">
-    <meta name="twitter:description" content="{{ config('project.description') }}">
-    <meta name="twitter:image" content="">
-    <meta name="twitter:domain" content="{{ config('project.url') }}">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
