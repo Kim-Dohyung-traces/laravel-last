@@ -1,11 +1,9 @@
 <?php
 
-# 장준혁 숙제 메인페이지 home 유도
-Route::get('/', function () {
-    return redirect()->route('home');
-});
-Route::get('/home', 'HomeController@index')->name('home');
-# 장준혁 숙제 메인페이지 home 유도
+# 장준혁 홈페이지
+Route::get('/', function () { return redirect('home'); });
+Route::resource('home', 'HomeController');
+# 장준혁 홈페이지
 
 
 # 정인식 조원소개
