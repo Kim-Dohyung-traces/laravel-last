@@ -17,6 +17,7 @@
 
     <!-- Styles -->
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href ="{{ asset('css/app2.css') }}" />
 
     @yield('style')
 
@@ -27,6 +28,7 @@
 </head>
 
 <body id="app-layout">
+
     @include('layouts.partial.navigation')
 
     <div class="container">
@@ -39,8 +41,8 @@
 
     <!-- Scripts -->
     <script src="{{ elixir('js/app.js') }}"></script>
-
     @yield('script')
+
 </body>
 
 </html>

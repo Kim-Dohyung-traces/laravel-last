@@ -5,7 +5,7 @@
     {!! csrf_field() !!}
 
     <div class="page-header">
-        <h4>로그인</h4>
+        <h2>로그인</h2>
     </div>
 
     <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">

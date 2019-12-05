@@ -4,6 +4,10 @@
 <form action="{{ route('users.store') }}" method="POST" role="form" class="form__auth">
     {!! csrf_field() !!}
 
+    <div class="page-header">
+        <h2>회원가입</h2>
+    </div>
+
     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
         <input type="text" name="name" class="form-control" placeholder="이름" value="{{ old('name') }}" autofocus />
         {!! $errors->first('name', '<span class="form-error">:message</span>') !!}

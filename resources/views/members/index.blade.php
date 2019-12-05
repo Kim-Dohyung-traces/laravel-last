@@ -3,11 +3,13 @@
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}">   
     <div>
-    <h1>멤버 소개</h1>
-    <label class="btn btn-primary btnCreate" onclick="create()">멤버 추가</label>
-    <div class="createDiv" id="createDiv">
-        <hr />
-    </div>
+        <div class="page-header">
+            <h2>조원소개</h2>
+        </div>
+        <label class="btn btn-primary btnCreate" onclick="create()">멤버 추가</label>
+        <div class="createDiv" id="createDiv">
+            <hr />
+        </div>
     </div>
     <div class="contentDiv" id="contentDiv">
         @forelse ($members as $member)
@@ -19,10 +21,10 @@
                 <div class="conDiv" id="conDiv{{$member->id}}"></div>
                 <div class="btnDiv">
                     <label class="btn btn-primary btnEdit" onclick="edit({{$member->id}})">정보 수정</label>
-                    <label onclick="del('{{$member->id}}')">멤버 삭제</label>
+                    <label class="btn btn-primary "onclick="del('{{$member->id}}')">멤버 삭제</label>
                 </div>
-            <div class="editDiv" id="editDiv{{$member->id}}">
-            </div>  
+                <div class="editDiv" id="editDiv{{$member->id}}">
+                </div>  
             </div>
         @empty
         @endforelse
@@ -150,6 +152,7 @@
                         conDiv.className = "conDiv";
                         btnDiv.className = "btnDiv";
                         btnEdit.className = "btn btn-primary";
+                        btnDel.className = "btn btn-primary";
 
                         contentDiv.appendChild(memberDiv);
                         memberDiv.appendChild(imgDiv);
