@@ -24,7 +24,7 @@ class User extends Authenticatable
         'confirm_code',
     ];
 
-    # 잘 모름
+    # 이메일 인증 확인
     protected $casts = [ 
         'activated' => 'boolean',
     ];

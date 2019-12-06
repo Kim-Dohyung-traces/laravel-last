@@ -6,6 +6,11 @@ Route::resource('home', 'HomeController');
 # 장준혁 홈페이지
 
 
+# 김도형 현지학기제
+Route::resource('programs', 'ProgramsController');
+# 김도형 현지학기제
+
+
 # 정인식 조원소개
 Route::resource('members','MembersController');
 Route::post('members/{id}/update/','MembersController@update');

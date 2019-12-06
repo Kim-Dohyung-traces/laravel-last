@@ -13,6 +13,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('members.index') }}">Members</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('programs.index') }}">Program</a>
+        </li>
         @if (Auth::guest())
         <li class="nav-item">
           <a class="nav-link" href="{{ route('sessions.create') }}">Sign in</a>
