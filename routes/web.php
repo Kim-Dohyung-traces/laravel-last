@@ -1,4 +1,8 @@
 <?php
+# ajax 연습
+Route::resource('ajaxtests', 'AjaxTestsController');
+# ajax 연습
+
 
 # 장준혁 홈페이지
 Route::get('/', function () { return redirect('home'); });

@@ -44,3 +44,10 @@
     </div>
   </header>
 @stop
+
+@section('script')
+<script>
+  window.onload = function() {
+  }
+</script>
+@stop

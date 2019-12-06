@@ -21,3 +21,8 @@
 @media only screen and (max-width: 767px) {
   /* 반응형 768 이하 */
 }
+
+.spanDiv > span {
+  border:1px solid black;
+  padding: 5px;
+}

@@ -8,6 +8,9 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
+          <a class="nav-link" href="{{ route('ajaxtests.index') }}">Ajax Test</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ url('/') }}">Home</a>
         </li>
         <li class="nav-item">
