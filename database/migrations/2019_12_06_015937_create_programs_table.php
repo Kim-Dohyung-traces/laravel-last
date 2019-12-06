@@ -15,7 +15,13 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedbigInteger('user_id');
+            $table->string('title');
+            $table->text('content');
             $table->timestamps();
+            
+            //외부 키 설정 
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
