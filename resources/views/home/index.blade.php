@@ -1,7 +1,6 @@
-<!-- @extends('layouts.app') -->
+@extends('layouts.app')
 
 @section('content')
-  <!-- Page Header -->
   <header class="masthead">
     <div class="page-header">
       <h2>홈페이지</h2>
