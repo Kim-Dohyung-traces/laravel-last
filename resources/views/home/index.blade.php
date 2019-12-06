@@ -4,11 +4,12 @@
   <header class="masthead">
     <div class="page-header">
       <h2>홈페이지</h2>
-      <div>
-        <div>
-          <img style="width:100%;" src="http://127.0.0.1:8000/img/home-bg.jpg" alt="Background Image">
+      <div class="row">
+      <div class=".col-sm-4"> zz </div>
+        <div class=".col-sm-8">
+          <img class="img-thumbnail" src="http://127.0.0.1:8000/img/home-bg.jpg" alt="Background Image">
         </div>
-        <div>
+        <div class=".col-sm-4">
           @if (Auth::guest())
           <form style="border: 1px solid black" action="{{ route('sessions.store') }}" method="POST" role="form" class="form__auth">
             {!! csrf_field() !!}
@@ -47,7 +48,8 @@
 
 @section('script')
 <script>
-  window.onload = function() {
+  $(document).ready(function(){
+    console.log("good");
   }
 </script>
 @stop
