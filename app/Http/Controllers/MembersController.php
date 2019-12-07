@@ -16,13 +16,6 @@ class MembersController extends Controller
         }
         return view('members.index',compact('members'));
     }
-    
-    public function ajaxIndex(Request $request, $id){
-
-        $members = \App\Member::where('id',$id)->first();
-        
-        return response()->json($members,201);
-    }
 
     public function create()
     {
@@ -51,9 +44,11 @@ class MembersController extends Controller
     {
     }
 
-    public function edit(\App\Member $member)
+    public function edit(Request $request, $id)
     {
-        # return view('members.edit',compact('member'));
+        $members = \App\Member::where('id',$id)->first();
+        
+        return response()->json($members,201);
     }
 
     public function update(Request $request, $id)
@@ -72,7 +67,7 @@ class MembersController extends Controller
         return response()->json($members,201);
     }
 
-    public function destroy(\App\Members $member)
+    public function destroy(\App\Member $member)
     {
         $member->delete();
     

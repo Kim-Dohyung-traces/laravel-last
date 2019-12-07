@@ -43,7 +43,7 @@
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
             $.ajax({
                 type:"GET",
-                url:'/members/'+id+'/ajax',
+                url:'/members/'+id+'/edit',
                 data: {'id': id, 'name' : name, 'comments':comments},
             }).then(function(data){
                 console.log(data);
@@ -269,7 +269,7 @@
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
             $.ajax({
                 type:"GET",
-                url:'/members/'+id+'/ajax',
+                url:'/members/'+id+'/edit',
                 data: {'id': id},
             }).then(function(data){
                 var editForm = document.createElement('form');

@@ -18,7 +18,6 @@ Route::resource('programs', 'ProgramsController');
 # 정인식 조원소개
 Route::resource('members','MembersController');
 Route::post('members/{id}/update/','MembersController@update');
-Route::get('members/{id}/ajax','MembersController@ajaxIndex');
 # 정인식 조원소개
 
 
