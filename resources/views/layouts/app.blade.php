@@ -30,8 +30,8 @@
 <body id="app-layout">
 
     @include('layouts.partial.navigation')
-
-    <div class="container">
+    <!-- main_container라는 id 꼭 필요 !! -->
+    <div class="container" id = main_container>
         @include('flash::message')
 
         @yield('content')
