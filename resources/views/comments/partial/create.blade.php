@@ -15,7 +15,7 @@ class="media media__create__comment {{ isset($parentId) ? 'sub' : 'top' }}">
       <!-- content필드에 대한 에러 메시지가 존재하는지의 여부 -->
       <div  class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
         <!-- 답글, 댓글 textarea-->
-        <textarea id="{{isset($parentId) ? 'new_comment' . $parentId : 'new_comment'}}" name="content" class="form-control">{{ old('content') }}</textarea>
+        <textarea id="{{isset($parentId) ? $article->id . 'new_comment' . $parentId      :     $article->id . 'new_comment'}}" name="content" class="form-control">{{ old('content') }}</textarea>
         {!! $errors->first('content', '<span class="form-error">:message</span>') !!}
       </div>
 

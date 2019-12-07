@@ -52,7 +52,17 @@
 @section('script')
 <script>
 
-var article_id = null;
+//게시글 눌렀을 경우의 ajax참고 ----------------------
+var article_id = null;                  //article_id
+    //게시글 열고 닫고의 토글기능을 위한 변수
+var article = [];                       
+var count = "{{$articles->count()}}";
+for(var i = 1; i < count+1; i++){
+    article[i] = 0;
+}
+//-----------------------------------------------
+
+
 //새글쓰기 버튼
 var count = 0;
 $(document).on('click', '.btn__create__article', function(e) {
@@ -74,7 +84,6 @@ $(document).on('click', '.btn__create__article', function(e) {
 $(document).on('click', '.btn__save__article', function(e) {
     var form = $('#article_create_form')[0];
     var data = new FormData(form);
-    console.log(data);
     $.ajax({
         type: 'POST',
         enctype:"multipart/form-data",
@@ -105,19 +114,27 @@ $(document).on('click', '.btn__tag__article', function(e) {
 //게시글 눌렀을 경우
 $(document).on('click', '.btn__show__article', function(e) {
     article_id = $(this).closest('.btn__show__article').data('id');
+    article[article_id] +=1;
     console.log(article_id);
+    console.log(article[article_id]);
     $.ajax({
         type: 'GET',
         url: `/articles/${article_id}`,
-    }).then(function (data){
-        $(`.media${article_id}`).load(`/articles/${article_id} .list__article`);
+    }).then(function (){
+        if(article[article_id]%2 == 1){
+            $(`.media${article_id}`).load(`/articles/${article_id} .list__article`);
+        }
+        else{
+            $(`.media${article_id}`).load(`/articles .media${article_id}`);
+        }
     });
 });
-//글 목록 버튼
 
+//글 목록 버튼
 $(document).on('click', '.button__list__articles', function(e) {
     console.log(article_id);
     $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},  
         type: "GET",
         url: '/articles'
     }).then(function() {
@@ -174,14 +191,11 @@ $(document).on('click', '.btn__create__comment', function(e) {
     var parent_id =  $(this).closest('.item__comment').data('id');  //대댓글이면 부모 댓글id, 아니면 null
     
     if(parent_id){
-        var content = $(`#new_comment${parent_id}`).val();
+        var content = $(`#${article_id}new_comment${parent_id}`).val();
     }
     else{
-        var content = $('#new_comment').val();
+        var content = $(`#${article_id}new_comment`).val();
     }
-    console.log("댓글 : ", content);
-    console.log("게시판 아이디 : ", article_id);
-    console.log("부모 아이디 : ", parent_id);
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},  
         type: 'POST',
@@ -233,7 +247,6 @@ var commentId = $(this).closest('.item__comment').data('id');
 $(document).on('click', '.btn__reply__comment', function(e) {
     var el__create = $(this).closest('.item__comment').find('.media__create__comment').first(),
     el__edit = $(this).closest('.item__comment').find('.media__edit__comment').first();
-    // console.log(el__create);
     el__edit.hide('fast');
     el__create.toggle('fast').end().find('textarea').focus();
 });
@@ -259,8 +272,6 @@ $(document).on('click', '.btn__vote__comment', function(e) {
         }
     }).then(function (data) {
         $('.container__comment').load(`/articles/${article_id} .container__comment`);
-        // self.attr('disabled', 'disabled');
-        // self.siblings().attr('disabled', 'disabled');
     });
 });
 </script>

@@ -15,22 +15,26 @@ class CommentsController extends Controller
 
     public function store(\App\Http\Requests\CommentsRequest $request, \App\Article $article)
     {    
-        \Log::info($request->all());
+        //로그인 하지 않은 유저가 댓글을 쓸 경우
         if(!$request->user()){
+            //비회원 유저를 생성
             \App\User::create([
                 'name' => "(비회원)",
                 'email' => Str::random(10) . '@test.com',
                 'password' => '1234',
             ]);
-            $a = \App\User::latest()->limit(1)->get();
-            print($a[0]->id);
+            //생성한 비회원 유저를 get
+            $last_user = \App\User::latest()->limit(1)->get();
+            
+            //생성한 비회원 유저로 댓글을 생성
             $comment = $article->comments()->create(array_merge(
                 $request->all(),
-                ['user_id' => $a[0]->id]
+                ['user_id' => $last_user[0]->id]
             ));
-            print("A");
         }
+        //로그인 한 유저가 댓글을 쓴 경우
         else{
+            //댓글을 생성
             $comment = $article->comments()->create(array_merge(
                 $request->all(),
                 ['user_id' => $request->user()->id]
@@ -38,7 +42,7 @@ class CommentsController extends Controller
         }
         \Log::info($comment);
         flash()->success('작성하신 댓글을 저장했습니다.');
-        return response()->json([], 201);
+        return response()->json([], 204);
     }
 
     public function update(\App\Http\Requests\CommentsRequest $request, \App\Comment $comment)
@@ -48,7 +52,7 @@ class CommentsController extends Controller
         $comment->update($request->all());
 
         flash()->success('작성하신 댓글을 수정했습니다.');
-        return response()->json([], 201);
+        return response()->json([], 204);
 
     }
 
