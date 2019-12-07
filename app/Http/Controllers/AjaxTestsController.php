@@ -15,7 +15,7 @@ class AjaxTestsController extends Controller
     public function create()
     {
         # POST form 생성
-        return response()->json(['form'],201);
+        return response()->json([public_path()],201);
     }
 
     public function store(Request $request)

@@ -35,7 +35,7 @@ class MembersController extends Controller
             ]);
 
             $file->move(attachments_path(), $filename);
-            }
+        }
 
         return response()->json($members,201);
     }
