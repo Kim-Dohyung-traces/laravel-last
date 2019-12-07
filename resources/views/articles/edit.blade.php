@@ -13,8 +13,7 @@
     </h4>
 </div>
 
-
-    <form action ='', id = "article_edit_form" method="PUT" enctype="multipart/form-data" class="form__article">
+    <form action ='', id = "article_edit_form{{$article->id}}" method="PUT" enctype="multipart/form-data" class="form__article">
         <hr />
         {!! csrf_field() !!}
         {!! method_field('PUT') !!}

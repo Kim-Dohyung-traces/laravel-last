@@ -67,7 +67,6 @@ for(var i = 1; i < count+1; i++){
 var count = 0;
 $(document).on('click', '.btn__create__article', function(e) {
     count += 1;
-    console.log(count);
     var text= count%2 == 0 ? " 새 글 쓰기" : " 돌아가기"
     if(!'{{auth()->user()}}'){
         alert("로그인 한 유저만 글 작성이 가능합니다");
@@ -103,7 +102,6 @@ $(document).on('click', '.btn__save__article', function(e) {
 //선택한 태그인 게시글만 보여줌
 $(document).on('click', '.btn__tag__article', function(e) {
     var tag = $(this).closest('.btn__tag__article').data('id');
-    console.log(tag);
     $.ajax({
         type: 'GET',
         url: `tags/${tag}/articles`,
@@ -115,8 +113,6 @@ $(document).on('click', '.btn__tag__article', function(e) {
 $(document).on('click', '.btn__show__article', function(e) {
     article_id = $(this).closest('.btn__show__article').data('id');
     article[article_id] +=1;
-    console.log(article_id);
-    console.log(article[article_id]);
     $.ajax({
         type: 'GET',
         url: `/articles/${article_id}`,
@@ -132,12 +128,11 @@ $(document).on('click', '.btn__show__article', function(e) {
 
 //글 목록 버튼
 $(document).on('click', '.button__list__articles', function(e) {
-    console.log(article_id);
     $.ajax({
-        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},  
         type: "GET",
         url: '/articles'
     }).then(function() {
+        article[article_id] +=1;
         $('#main_container').load(`/articles #main_container`);
     });
 });
@@ -154,9 +149,8 @@ $(document).on('click', '.button__edit__articles', function(e) {
 
 //게시글 수정 완료 버튼
 $(document).on('click', '.button__update__articles', function(e) {
-    var form = $('#article_edit_form')[0];
-    var parent_id =  $(this).closest('#article_edit_form')[0];
-    var data = new FormData(parent_id);
+    var form = $(`#article_edit_form1`)[0];
+    var data = new FormData(form);
     console.log(form);
     console.log(data);
     $.ajax({
@@ -174,13 +168,13 @@ $(document).on('click', '.button__update__articles', function(e) {
 //게시글 삭제 버튼
 $(document).on('click', '.button__delete__articles', function(e) {
 
-    console.log(article_id);
     if (confirm('글을 삭제합니다.')) { //글을 삭제합니다 경고창에서 yes를누르면 true
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},  
             type: "DELETE",
             url: '/articles/' + article_id
         }).then(function() {
+            article[article_id] +=1;
             $('#main_container').load(`/articles #main_container`);
         });
     }
@@ -214,8 +208,6 @@ $(document).on('click', '.btn__update__comment', function(e) {
     var parent_id =  $(this).closest('.item__comment').data('id');  //대댓글이면 부모 댓글id, 아니면 null
     var content = $(`#edit_comment${parent_id}`).val();
     
-    console.log("댓글 : ", content);
-    console.log(parent_id);
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},  
         type: 'PUT',
