@@ -10,10 +10,10 @@
             <div class="program-button">
                 <label class="btn btn-primary btnCreate" onclick="create()">새글 쓰기</label>   
             </div>
+            <hr>
         </div>
-        <hr>
 
-        <div class="carousel slide" data-ride="carousel">
+        <!-- <div class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <img src="img\about-bg.jpg" alt="carousel-img" style="max-width: 100%">
@@ -21,30 +21,32 @@
                         <h1 style="font-size: 10em">test1</h1>
                     </div>
                 </div>
-                <!-- <div class="item">
+                <div class="item">
                     <img src="img\about-bg.jpg" alt="carousel-img" style="max-width: 100%">
                     <div class="carousel-caption">
                         <h1 style="font-size: 10em">test2</h1>
                     </div>
-                </div> -->
+                </div>
             </div>
-        </div> 
+        </div>  -->
         <div class="program-div">
-  
-                <div class="card" onclick="show()">
-                    <div class="card-imgbox col-md-4">
-                        <img class="cardimg" src="img\about-bg.jpg" alt="program-img">
-                    </div>
-                    <div class="card-body col-md-8">
-                        <h1 class="card-title">test</h1>
-                        <div class="card-information">
-                            <p class="card-information-name col-md-6">작성자 : 김도형</p>
-                            <p class="card-information-time col-md-6">작성시간 : 2019.12.06</p>
-                        </div>
-                        <p>12345678</p>
+            @forelse ($programs as $program)
+               @include('programs.partials.program', compact('program'))
+            @empty
+                <p class="text-center text-danger">
+                    글이 없습니다.
+                </p>
+            @endforelse
+            @if($programs->count())
+                <div class="text-center program-paginator">
+                    <div class="paginator">
+                        {!! $programs->appends(request()->except('page'))->render() !!}
                     </div>
                 </div>
-
+            @endif
+        </div>
+        <div class="create-form">
+            @include('programs.create')
         </div>
     </div>
 @stop
@@ -55,7 +57,7 @@
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
             $.ajax({
                 type:'GET',
-                url: 'ajaxtests/'+'create',
+                url: 'programs/'+'create',
                 data: {
                 mydata: "mydata",
                 },
@@ -63,19 +65,64 @@
                 console.log(data);
                 }
             });
+            if(!'{{auth()->user()}}'){
+                alert("로그인 한 유저만 글 작성이 가능합니다");
+                return;
+            }
+            $('.program-div').css("display","none");
+            $('.create-form').css("display","block");
+            $('.page-header').css("display","none");
         }
+        function back(){
+            $('.program-div').css("display","block");
+            $('.create-form').css("display","none");
+            $('.page-header').css("display","block");
+        }   
         function show(){
 
+        }
+        function store(){
+            var form = $('#program_create_form')[0];
+            var data = new FormData(form);
+            $.ajax({
+                type:'POST',
+                url: 'programs',
+                data: data,
+                processData:false,
+                contentType:false,
+                error:function(request,status,error){
+                    alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                },
+            }).then(function(){    
+                $('.program-div').load('/programs .program-div').css("display","block");
+                $('.create-form').css("display","none");
+                $('.page-header').css("display","block");
+            });
         }
     </script>
 @stop
 @section("style")
     <style>
+        .create-header{
+        margin-top:15px;
+        }
         .program-title{
         display: inline-block;
         margin: 5px !important;
         }
+        .create-title{
+        margin-top:auto;
+        margin-bottom:auto;
+        display: inline-block;
+        }
         .program-button{
+        float: right;
+        display: inline-block;
+        margin: 5px !important;
+        }
+        .create-button{
+        margin-top:auto;
+        margin-bottom:auto;
         float: right;
         display: inline-block;
         margin: 5px !important;
@@ -120,6 +167,20 @@
         margin-left:-2%;
         margin-top:auto;
         margin-bottom:auto;
+        }
+        .card-content{
+            max-height:100px;
+            overflow:hidden;
+        }
+        .create-form{
+            display:none;
+        }
+        .program-paginator{
+            margin:10px 0 0 0;
+        }
+        .paginator{
+            display:inline-block;
+            margin:0 auto;
         }
     </style>
 @stop

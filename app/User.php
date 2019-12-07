@@ -41,6 +41,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+    public function programs()
+    {
+        return $this->hasMany(Program::class);
+    }
     // 한 유저는 여러개의 좋아요
     public function votes()
     {
