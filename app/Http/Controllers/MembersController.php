@@ -34,7 +34,8 @@ class MembersController extends Controller
                 'filename' => $filename,
             ]);
 
-            $file->move(attachments_path(), $filename);
+            // $file->move(attachments_path(), $filename);
+            $file->move(attachments_path2(), $filename);
         }
 
         return response()->json($members,201);

@@ -46,4 +46,10 @@ if (! function_exists('attachments_path')) {
     }
 }
 
+if (! function_exists('attachments_path2')) {
+    function attachments_path2($path = null)
+    {
+        return public_path('files2'.($path ? DIRECTORY_SEPARATOR.$path : $path));
+    }
+}
 ?>
