@@ -15,7 +15,7 @@
         @forelse ($members as $member)
             <div class="memberDiv" id="memberDiv{{$member->id}}">
                 <div class="imgDiv">
-                        <img src="http://127.0.0.1:8000/files/{{$member->filename}}" alt="11"
+                        <img src="http://127.0.0.1:8000/files2/{{$member->filename}}" alt="11"
                         onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')"></img>
                 </div>
                 <div class="conDiv" id="conDiv{{$member->id}}"></div>
@@ -130,7 +130,7 @@
                         nameDiv.id= "nameDiv"+data.id;
                         commentsDiv.id = "comments"+data.id;
 
-                        img.src="http://127.0.0.1:8000/files/"+data.filename;
+                        img.src="http://127.0.0.1:8000/files2/"+data.filename;
                         img.alt= "사진 안보여";
                         $(img).on('click',function(){
                             imgClick(data.id,data.name,data.comments);
