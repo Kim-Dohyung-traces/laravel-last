@@ -103,7 +103,7 @@
                 $.ajax({
                     type:"post",
                     enctype:"multipart/form-data",
-                    data: data,
+                    data:data,
                     url: "/members",
                     processData: false,
                     contentType: false,
@@ -179,11 +179,14 @@
             var editDiv = document.getElementById('editDiv'+id);
             var form  = $('#editForm'+id)[0];
             var data = new FormData(form);
+            data.append('_method','put');
+            // method:'PUT',
+            // @method('PUT')
             console.log(form);
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
             $.ajax({
                     type:"post",
-                    url: '/members/' +id+'/update',
+                    url: '/members/' +id,
                     data: data,
                     processData:false,
                     contentType:false,
@@ -223,6 +226,7 @@
 
                 creForm.id = "creForm";
                 creForm.enctype = "multipart/form-data";
+                // creForm.attri
 
                 nameLabel.innerHTML = "이름";
                 nameInput.type ="text";

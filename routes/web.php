@@ -17,7 +17,7 @@ Route::resource('programs', 'ProgramsController');
 
 # 정인식 조원소개
 Route::resource('members','MembersController');
-Route::post('members/{id}/update/','MembersController@update');
+// Route::post('members/{id}/update/','MembersController@update');
 # 정인식 조원소개
 
 
@@ -77,8 +77,8 @@ Route::get('tags/{slug}/articles', [ //{{slug}}값에 들어온 것은 index메�
     'uses' => 'ArticlesController@index',
 ]);
 // 수정 예정
-Route::resource('attachments', 'AttachmentsController', ['only' => ['store', 'destroy']]);
-Route::get('attachments/{file}', 'AttachmentsController@show');
+// Route::resource('attachments', 'AttachmentsController', ['only' => ['store', 'destroy']]);
+// Route::get('attachments/{file}', 'AttachmentsController@show');
 // 댓글
 Route::resource('comments', 'CommentsController', ['only' => ['update', 'destroy']]);
 Route::resource('articles.comments', 'CommentsController', ['only' => 'store']);
