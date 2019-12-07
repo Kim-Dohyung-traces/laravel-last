@@ -15,10 +15,10 @@ class CreateAttachmentsTable extends Migration
     {
         Schema::create('attachments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('article_id')->nullable()->index();
+            $table->unsignedBigInteger('article_id')->index();
             $table->string('filename');
-            $table->unsignedBigInteger('bytes')->nullable();
-            $table->string('mime')->nullable();
+            $table->unsignedBigInteger('bytes');
+            $table->string('mime');
             $table->timestamps();
             // $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
         });
