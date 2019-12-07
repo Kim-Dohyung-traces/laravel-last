@@ -18,34 +18,35 @@
         <button class="fa fa-plus-circle btn btn__create__article  btn-primary"></i>
         새 글 쓰기
 </div>
-
-<div class="row container__article">
-    <div class="col-md-3 sidebar__article">
-        <aside>
-            <!-- 게시판 좌측 태그 목록 -->
-                @include('tags.partial.index')
-        </aside>
-    </div>
-
-    <div class="col-md-9 list__article">
-        @include('articles.create')
-
-        <article>
-            <!-- 게시글 목록 -->
-            @forelse($articles as $article)
-            @include('articles.partial.article', compact('article'))
-            @empty
-            <p class="text-center text-danger">
-                글이 없습니다.
-            </p>
-            @endforelse
-        </article>
-
-        @if($articles->count())
-        <div class="text-center paginator__article">
-            {!! $articles->appends(request()->except('page'))->render() !!}
+<div class = "main_article">
+    <div class="row container__article">
+        <div class="col-md-3 sidebar__article">
+            <aside>
+                <!-- 게시판 좌측 태그 목록 -->
+                    @include('tags.partial.index')
+            </aside>
         </div>
-        @endif
+
+        <div class="col-md-9 list__article">
+            @include('articles.create')
+
+            <article>
+                <!-- 게시글 목록 -->
+                @forelse($articles as $article)
+                @include('articles.partial.article', compact('article'))
+                @empty
+                <p class="text-center text-danger">
+                    글이 없습니다.
+                </p>
+                @endforelse
+            </article>
+
+            @if($articles->count())
+            <div class="text-center paginator__article">
+                {!! $articles->appends(request()->except('page'))->render() !!}
+            </div>
+            @endif
+        </div>
     </div>
 </div>
 @stop
@@ -66,6 +67,7 @@ for(var i = 1; i < count+1; i++){
 //새글쓰기 버튼
 var count = 0;
 $(document).on('click', '.btn__create__article', function(e) {
+    article[article_id] = 0;
     count += 1;
     var text= count%2 == 0 ? " 새 글 쓰기" : " 돌아가기"
     if(!'{{auth()->user()}}'){
@@ -91,7 +93,8 @@ $(document).on('click', '.btn__save__article', function(e) {
         processData: false,
         contentType: false,
     }).then(function (){
-        $('.container__article').load('/articles .container__article');
+        article[article_id] = 0;
+        $('.main_article').load('/articles .container__article');
         var el_create = $('.new_article');
         var el_container = $('.container__article');
         el_container.toggle('fast').focus();
@@ -106,7 +109,8 @@ $(document).on('click', '.btn__tag__article', function(e) {
         type: 'GET',
         url: `tags/${tag}/articles`,
     }).then(function (data){
-        $('.container__article').load(`tags/${tag}/articles .container__article`);
+        article[article_id] = 0;
+        $('.main_article').load(`tags/${tag}/articles .container__article`);
     });
 });
 //게시글 눌렀을 경우
@@ -132,7 +136,7 @@ $(document).on('click', '.button__list__articles', function(e) {
         type: "GET",
         url: '/articles'
     }).then(function() {
-        article[article_id] +=1;
+        article[article_id] = 0;
         $('#main_container').load(`/articles #main_container`);
     });
 });
@@ -143,6 +147,7 @@ $(document).on('click', '.button__edit__articles', function(e) {
         type: "GET",
         url: `/articles/${article_id}/edit`
     }).then(function() {
+        article[article_id] = 0;
         $(`.media${article_id}`).load(`/articles/${article_id}/edit #main_container`);
     });
 });
@@ -162,6 +167,7 @@ $(document).on('click', '.button__update__articles', function(e) {
         processData: false,
         contentType: false,
     }).then(function (){
+        article[article_id] = 0;
         $('.container__article').load('/articles .container__article');
     });
 });
@@ -174,7 +180,7 @@ $(document).on('click', '.button__delete__articles', function(e) {
             type: "DELETE",
             url: '/articles/' + article_id
         }).then(function() {
-            article[article_id] +=1;
+            article[article_id] = 0;
             $('#main_container').load(`/articles #main_container`);
         });
     }
