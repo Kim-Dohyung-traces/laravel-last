@@ -16,4 +16,8 @@ class program extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function program_attachments(){
+        return $this->belongsTo(Program_attachment::class);
+    }
 }
