@@ -14,10 +14,13 @@
           <a class="nav-link" href="{{ url('/') }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('members.index') }}">Members</a>
+          <a class="nav-link" href="{{ route('members.index') }}">Member</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('programs.index') }}">Program</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('articles.index') }}">Article</a>
         </li>
         @if (Auth::guest())
         <li class="nav-item">

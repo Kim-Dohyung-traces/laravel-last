@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Event;
 class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
-        # 이건 .. 지워두 되는가
-        # Registered::class => [
-        #     SendEmailVerificationNotification::class,
-        # ],
-
         \Illuminate\Auth\Events\Login::class => [
             \App\Listeners\UsersEventListener::class
         ],

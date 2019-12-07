@@ -5,8 +5,7 @@ function attachments_path($path = '')
 }
 
 function format_filesize($bytes){
-    if(! is_numeric($bytes)) 
-    return 'NaN';
+    if(! is_numeric($bytes)) return 'NaN';
 
     $decr = 1024;
     $step = 0;
@@ -18,10 +17,33 @@ function format_filesize($bytes){
     }
     return round($bytes,2) .$suffix[$step];
 }
- if(! function_exists('markdown')){
+
+if(! function_exists('markdown')){
     function markdown($text=null)
     {
         return app(ParsedownExtra::class)->text($text);
     }
 }
+
+if (! function_exists('gravatar_profile_url')) {
+    function gravatar_profile_url($email)
+    {
+        return sprintf("//www.gravatar.com/%s", md5($email));
+    }
+}
+
+if (! function_exists('gravatar_url')) {
+    function gravatar_url($email, $size = 48)
+    {
+        return sprintf("//www.gravatar.com/avatar/%s?s=%s", md5($email), $size);
+    }
+}
+
+if (! function_exists('attachments_path')) {
+    function attachments_path($path = null)
+    {
+        return public_path('files'.($path ? DIRECTORY_SEPARATOR.$path : $path));
+    }
+}
+
 ?>
