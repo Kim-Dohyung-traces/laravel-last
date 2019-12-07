@@ -2,6 +2,7 @@
 
 @section('content')
 @php $viewName = 'articles.index'; @endphp
+
 <div class="page-header">
     <h4>
         <a href="{{ route('articles.index') }}">
@@ -17,8 +18,7 @@
         <button class="fa fa-plus-circle btn btn__create__article  btn-primary"></i>
         새 글 쓰기
 </div>
-
-<div class="test">
+<div class="magic">
 <div class="row container__article">
     <div class="col-md-3 sidebar__article">
         <aside>
@@ -88,7 +88,7 @@ $(document).on('click', '.btn__save__article', function(e) {
         processData: false,
         contentType: false,
     }).then(function (){
-        $('.container__article').load('/articles .container__article');
+        $('.magic').load('/articles .container__article');
         var el_create = $('.new_article');
         var el_container = $('.container__article');
         el_container.toggle('fast').focus();
@@ -102,7 +102,7 @@ $(document).on('click', '.btn__tag__article', function(e) {
         type: 'GET',
         url: `tags/${tag}/articles`,
     }).then(function (data){
-        $('.test').load(`tags/${tag}/articles .container__article`);
+        $('.magic').load(`tags/${tag}/articles .container__article`);
     });
 });
 //게시글 눌렀을 경우
@@ -142,20 +142,20 @@ $(document).on('click', '.button__edit__articles', function(e) {
 });
 //게시글 수정 완료 버튼
 $(document).on('click', '.button__update__articles', function(e) {
-    var form = $(`#article_edit_form1`)[0];
+    var form = $(`#article_edit_form${article_id}`)[0];
     var data = new FormData(form);
     console.log(form);
     console.log(data);
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},  
-        type: 'PUT',
+        type: 'POST',
         enctype:"multipart/form-data",
         url: `/articles/${article_id}`,
         data: data,
         processData: false,
         contentType: false,
     }).then(function (){
-        $('.container__article').load('/articles .container__article');
+        $('.magic').load('/articles .container__article');
     });
 });
 //게시글 삭제 버튼
