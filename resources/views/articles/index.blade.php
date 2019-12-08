@@ -154,13 +154,14 @@ $(document).on('click', '.button__edit__articles', function(e) {
 
 //게시글 수정 완료 버튼
 $(document).on('click', '.button__update__articles', function(e) {
-    var form = $(`#article_edit_form1`)[0];
+    var form = $(`#article_edit_form${article_id}`)[0];
     var data = new FormData(form);
+    data.append('_method', 'PUT');
     console.log(form);
     console.log(data);
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},  
-        type: 'PUT',
+        type: 'POST',
         enctype:"multipart/form-data",
         url: `/articles/${article_id}`,
         data: data,
@@ -168,7 +169,7 @@ $(document).on('click', '.button__update__articles', function(e) {
         contentType: false,
     }).then(function (){
         article[article_id] = 0;
-        $('.container__article').load('/articles .container__article');
+        $('.main_article').load('/articles .container__article');
     });
 });
 //게시글 삭제 버튼
@@ -261,8 +262,10 @@ $(document).on('click', '.btn__edit__comment', function(e) {
 $(document).on('click', '.btn__vote__comment', function(e) {
     var self = $(this),
     commentId = $(this).closest('.item__comment').data('id');
+    
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},  
+        method : 'PUT',
         type: 'POST',
         url: '/comments/' + commentId + '/votes',
         data: {
