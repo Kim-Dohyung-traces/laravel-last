@@ -43,6 +43,11 @@
     <script src="{{ elixir('js/app.js') }}"></script>
     @yield('script')
 
+    <script>
+    <link rel="stylesheet" href ="{{ asset('css/app2.css') }}" />
+    
+    </script>
+
 </body>
 
 </html>
