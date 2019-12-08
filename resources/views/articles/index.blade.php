@@ -265,7 +265,6 @@ $(document).on('click', '.btn__vote__comment', function(e) {
     
     $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},  
-        method : 'PUT',
         type: 'POST',
         url: '/comments/' + commentId + '/votes',
         data: {
@@ -290,12 +289,38 @@ $(document).on('click', '.btn__vote__comment', function(e) {
         border: 2px solid black;
     }
     .action__article button {
-        padding: 5px 30px;
-        margin: 0 1px;
+        padding: 10px 20px;
+        margin: 10px;
     }
 
     .pull-left {
-        padding: 0 10px;
+        padding: 0 15px;
+    }
+
+    .form__new__comment {
+        border-radius: 0.25rem;
+        border: 2px solid rgba(0, 0, 0, 0.3);
+        margin-bottom: 15px;
+        padding: 5px;
+    }
+    .media__create__comment {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    /* 글 몸통 */
+    .media-body {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    /* 좋아요 싫어요 이미지 버튼 */
+    .btn__delete__comment, .btn__edit__comment, .btn__reply__comment {
+        padding: 0 3px;
+        margin: 3px 3px;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.33rem;
+        color:white;
+        text-shadow: 0 0 5px black;
+        background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
     }
     </style>
 @stop

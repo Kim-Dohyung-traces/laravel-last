@@ -17,14 +17,14 @@
 
     <div class="action__comment">
       @if ($currentUser)
-        <button class="btn__vote__comment" data-vote="up" title="좋아요">
+        <button class="btn__vote__comment btn-success" data-vote="up" title="좋아요">
           <i class="fa fa-chevron-up"></i>
           <span>좋아요{{ $comment->up_count }}</span>
         </button>
 
-        <span> | </span>
+        &nbsp;
 
-        <button class="btn__vote__comment" data-vote="down" title="싫어요"}>
+        <button class="btn__vote__comment btn-danger" data-vote="down" title="싫어요"}>
           <i class="fa fa-chevron-down"></i> <span>싫어요{{ $comment->down_count }}</span>
         </button>
         
@@ -32,8 +32,8 @@
     </div>
     <div class="action__comment">
       @can('update', $comment)
-        <button class="btn__delete__comment">댓글 삭제</button> •
-        <button class="btn__edit__comment">댓글 수정</button> •
+        <button class="btn__delete__comment"><i class="fa fa-trash-o"></i>댓글 삭제</button> •
+        <button class="btn__edit__comment"><i class="fa fa-pencil"></i>댓글 수정</button> •
       @endcan
 
       <!-- textarea를 토글 시켜주는 버튼(답글) -->
