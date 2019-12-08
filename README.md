@@ -37,3 +37,8 @@
 - php artisan db:seed
 
 - php artisan serve [ --host=domain --port=8000 ]
+
+
+### img 경로 확인
+wdj6\resources\views\members>index.blade.php 의 img
+wdj6\resources\views\home>index.blade.php 의 img

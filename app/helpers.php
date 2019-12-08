@@ -1,7 +1,7 @@
 <?php
-function attachments_path($path = '')
+function program_attachments_path($path = '')
 {
-    return public_path('files'.($path ? DIRECTORY_SEPARATOR.$path : $path));
+    return public_path('files\programs'.($path ? DIRECTORY_SEPARATOR.$path : $path));
 }
 
 function format_filesize($bytes){
@@ -46,4 +46,10 @@ if (! function_exists('attachments_path')) {
     }
 }
 
+if (! function_exists('attachments_path2')) {
+    function attachments_path2($path = null)
+    {
+        return public_path('files2'.($path ? DIRECTORY_SEPARATOR.$path : $path));
+    }
+}
 ?>

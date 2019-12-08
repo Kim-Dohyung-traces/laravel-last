@@ -6,6 +6,7 @@
       <h2>홈페이지</h2>
       <div class="row">
         <div class="col-sm-8">
+          <!-- <img class="img-thumbnail" src="http://127.0.0.1:8000/img/home-bg.jpg" alt="Background Image"> -->
           <img class="img-thumbnail" src="http://btrya23.iptime.org:8000/img/home-bg.jpg" alt="Background Image">
         </div>
         <div class="col-sm-4">
