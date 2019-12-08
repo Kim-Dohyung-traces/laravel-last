@@ -42,7 +42,6 @@ class AuthServiceProvider extends ServiceProvider
             return $user->id - 1 === $model->id;
 
         });
-
-        
+    
     }
 }
