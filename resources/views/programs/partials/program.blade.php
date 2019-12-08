@@ -1,7 +1,7 @@
 <div class="card card-program program{{$program->id}}" onclick="show({{$program->id}})" data-id="{{$program->id}}">
     <div class="card-imgbox col-md-4">
         <!-- <img class="cardimg" src="files\programs\{{\App\Program_attachment::whereId($program->id)->first()->filename}}" alt="program-img"> -->
-        <img class="cardimg" src="http://btrya23.iptime.org:8000/files/programs/{{\App\Program_attachment::whereId($program->id)->first()->filename}}" alt="program-img">
+        <img class="cardimg" src="http://btrya23.iptime.org:8000/files3/{{\App\Program_attachment::whereId($program->id)->first()->filename}}" alt="program-img">
     </div>
     <div class="card-body col-md-8">
         <h1 class="card-title">{{$program->title}}</h1>

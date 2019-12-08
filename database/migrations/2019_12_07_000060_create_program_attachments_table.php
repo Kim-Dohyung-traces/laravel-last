@@ -10,7 +10,7 @@ class CreateProgramAttachmentsTable extends Migration
     {
         Schema::create('program_attachments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('program_id')->unsigned()->index();
+            $table->unsignedBigInteger('program_id')->index();
             $table->string('filename');
             $table->unsignedBigInteger('bytes');
             $table->string('mime');

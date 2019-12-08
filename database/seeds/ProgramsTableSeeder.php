@@ -11,6 +11,7 @@ class ProgramsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        App\Program::truncate();
+        factory(App\Program::class, 7)->create();
     }
 }

@@ -46,10 +46,17 @@ if (! function_exists('attachments_path')) {
     }
 }
 
-if (! function_exists('attachments_path2')) {
+if (! function_exists('attachments_path2')) { # 멤버
     function attachments_path2($path = null)
     {
         return public_path('files2'.($path ? DIRECTORY_SEPARATOR.$path : $path));
+    }
+}
+
+if (! function_exists('attachments_path3')) { # 멤버
+    function attachments_path3($path = null)
+    {
+        return public_path('files3'.($path ? DIRECTORY_SEPARATOR.$path : $path));
     }
 }
 ?>

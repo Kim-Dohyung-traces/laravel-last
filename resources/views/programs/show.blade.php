@@ -10,7 +10,8 @@
     </div>
     <div class="show-body col-md-11">
         <div class="show-imgbox col-md-8">
-            <img class="show-img" src="files\programs\{{\App\Program_attachment::whereId($program->id)->first()->filename}}" alt="program-img">
+            <!-- <img class="show-img" src="files\programs\{{\App\Program_attachment::whereId($program->id)->first()->filename}}" alt="program-img"> -->
+            <img class="show-img" src="http://btrya23.iptime.org:8000/files3/programs/{{\App\Program_attachment::whereId($program->id)->first()->filename}}" alt="program-img">
         </div>
         <hr>
         <div class="show-content col-md-11">

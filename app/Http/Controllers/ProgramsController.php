@@ -62,7 +62,7 @@ class ProgramsController extends Controller
                     'bytes' => $file->getSize(),
                     'mime' => $file->getClientMimeType()
                 ]);
-                $file->move(program_attachments_path(), $filename);
+                $file->move(program_attachments_path3(), $filename);
             }
         }
 
