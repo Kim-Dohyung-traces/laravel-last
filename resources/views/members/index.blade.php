@@ -15,13 +15,19 @@
         @forelse ($members as $member)
             <div class="memberDiv" id="memberDiv{{$member->id}}">
                 <div class="imgDiv">
-                        <img src="http://127.0.0.1:8000/files2/{{$member->filename}}" alt="11"
-                        onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')"></img>
+                    <!-- <img class="img-thumbnail" src="http://127.0.0.1:8000/files2/{{$member->filename}}" alt="11"
+                    onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')"></img> -->
+                    <img class="img-thumbnail" src="http://btrya23.iptime.org:8000/files2/{{$member->filename}}" alt="11"
+                    onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')"></img>
+                </div>
+                <div class="infoDiv">
+                    <label onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')"
+                    class="btn btn-info" onclick="edit({{$member->id}})">정보 확인</label>
                 </div>
                 <div class="conDiv" id="conDiv{{$member->id}}"></div>
                 <div class="btnDiv">
-                    <label class="btn btn-primary btnEdit" onclick="edit({{$member->id}})">정보 수정</label>
-                    <label class="btn btn-primary "onclick="del('{{$member->id}}')">멤버 삭제</label>
+                    <label class="btn btn-primary btnEdit" onclick="edit({{$member->id}})">수정</label>
+                    <label class="btn btn-danger "onclick="del('{{$member->id}}')">삭제</label>
                 </div>
                 <div class="editDiv" id="editDiv{{$member->id}}">
                 </div>  
@@ -118,6 +124,7 @@
                         var imgDiv = document.createElement('div');
                         var conDiv = document.createElement('div');
                         var btnDiv = document.createElement('div');
+                        var infoDiv = document.createElement('div');
                         var nameDiv = document.createElement('div');
                         var commentsDiv = document.createElement('div');
                         var img = document.createElement('img');
@@ -130,40 +137,56 @@
                         nameDiv.id= "nameDiv"+data.id;
                         commentsDiv.id = "comments"+data.id;
 
-                        img.src="http://127.0.0.1:8000/files2/"+data.filename;
+                        img.src="http://btrya23.iptime.org:8000/files2/"+data.filename;
+                        // img.src="http://127.0.0.1:8000/files2/"+data.filename;
+                        img.className = "img-thumbnail";
                         img.alt= "사진 안보여";
                         $(img).on('click',function(){
                             imgClick(data.id,data.name,data.comments);
                         });
 
-                        btnEdit.innerHTML="정보 수정";
+                        btnEdit.innerHTML="수정";
                         $(btnEdit).on('click',function(){                            
                             edit(data.id);
                         });
-                        btnDel.innerHTML="멤버 삭제";
+                        btnDel.innerHTML="삭제";
                         $(btnDel).on('click',function(){
                             del(data.id);
                         });
 
-                        memberDiv.id = 'memberDiv'+data.id;
                         memberDiv.className = "memberDiv";
+                        memberDiv.id = 'memberDiv'+data.id;
                         imgDiv.className = "imgDiv";
-                        conDiv.id = "conDiv"+data.id;
+                        infoDiv.className = "infoDiv";
                         conDiv.className = "conDiv";
+                        conDiv.id = "conDiv"+data.id;
                         btnDiv.className = "btnDiv";
                         btnEdit.className = "btn btn-primary";
-                        btnDel.className = "btn btn-primary";
+                        btnDel.className = "btn btn-danger";
+
+                        // 정보 확인 라벨추가
+                        var btnInfo = document.createElement('label');
+                        btnInfo.innerHTML="정보 확인";
+                        $(btnInfo).on('click',function(){
+                            imgClick(data.id,data.name,data.comments);
+                        })
+                        btnInfo.className = "btn btn-info";
 
                         contentDiv.appendChild(memberDiv);
                         memberDiv.appendChild(imgDiv);
+                        imgDiv.appendChild(img);
+
+                        // 정보 확인 div
+                        memberDiv.appendChild(infoDiv);
+                        // 정보 확인 label
+                        infoDiv.appendChild(btnInfo);
+
                         memberDiv.appendChild(conDiv);
                         conDiv.appendChild(nameDiv);
                         conDiv.appendChild(commentsDiv);
+
                         memberDiv.appendChild(btnDiv);
                         memberDiv.appendChild(editDiv);
-
-                        imgDiv.appendChild(img);
-
                         btnDiv.appendChild(btnEdit);
                         btnDiv.appendChild(btnDel);
                     }
@@ -301,8 +324,8 @@
                 commentsTextarea.value = data.comments;
                 commentsTextarea.className = "form-control"
 
-                editLabel.className = "btn btn-primary";
-                editLabel.innerHTML = "수정하기";
+                editLabel.className = "btn btn-success";
+                editLabel.innerHTML = "수정된 내용 저장";
                 $(editLabel).on("click",function(){
                     btnEdit(data.id);
                 })
@@ -335,16 +358,29 @@
 
             }
 
-            .conDiv,.btnDiv{
-                width:230px;
+            .conDiv, .btnDiv, .infoDiv{
+                width:177px;
             }
 
             .btn-info{
-                margin-left:70px;
+                width:100%;
+                margin-top: 10px;
+                color: white;
+            }
+            .imgDiv{
+                width:177px;
+                height:236px;
             }
             img{
-                width:230px;
-                height:300px;
+                width:100%;
+                height:100%;
+            }
+            .btnDiv > label {
+                width:48%;
+            }
+            .btn-success{
+                width:98%;
+                margin:1%;
             }
         </style>
 @stop
