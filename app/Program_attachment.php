@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Program_attachment extends Model
 {
     protected $fillable = [
+        'program_id',
         'filename',
         'bytes',
         'mime',
     ];
     protected $hidden = [
-        'program_id',
         'created_at',
         'updated_at',
     ];

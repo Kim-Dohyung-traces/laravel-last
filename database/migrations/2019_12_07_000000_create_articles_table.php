@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticlesTable extends Migration
+class CreateProgramAttachmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('program_attachments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->string('title');
-            $table->text('content');
+            $table->unsignedBigInteger('program_id')->unsigned()->index();
+            $table->string('filename');
+            $table->unsignedBigInteger('bytes');
+            $table->string('mime');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onUpdete('cascade')->onDelete('cascade');
-
+            // $table->foreign('program_id')->references('id')->on('programs')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('program_attachments');
     }
 }

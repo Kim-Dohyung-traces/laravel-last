@@ -42,8 +42,13 @@
 
 
 ### + [ img 경로 확인 ]
-- wdj6\resources\views\members>index.blade.php 의 img
-- wdj6\resources\views\home>index.blade.php 의 img
+- wdj6\resources\views\members\index.blade.php 의 img
+- wdj6\resources\views\home\index.blade.php 의 img
 - wdj6\resources\views\users\partialindex.blade.php 의 img
 
 - ex) php artisan serve --host 192.168.0.2 --port 8000
+
+
+### + [ program 경로 확인 ]
+- wdj6\resources\views\programs\index.blade.php 의 img
+- wdj6\resources\views\programs\partials\program.blade.php 의 img

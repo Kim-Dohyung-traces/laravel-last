@@ -16,7 +16,7 @@ class program extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-
+    //여러 프로그램은 한 파일을 가질 수 있음
     public function program_attachments(){
         return $this->belongsTo(Program_attachment::class);
     }
