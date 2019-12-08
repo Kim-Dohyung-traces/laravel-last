@@ -294,7 +294,7 @@ $(document).on('click', '.btn__vote__comment', function(e) {
     }
 
     .pull-left {
-        padding: 0 15px;
+        padding: 3px 10px;
     }
 
     .form__new__comment {
@@ -322,5 +322,14 @@ $(document).on('click', '.btn__vote__comment', function(e) {
         text-shadow: 0 0 5px black;
         background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
     }
+    .divdiv {
+        margin: 2%;
+    }
+
+    .divdiv img {
+        width: 100%;
+
+    }
+
     </style>
 @stop

@@ -3,16 +3,22 @@
     @include('users.partial.avatar', ['user' => $article->user])
     <div class="media-body">
         <h4 class="meida-heading">
+            <h6>[ {{$article->id}} ] 번째 게시글
+                &nbsp; 
+                &nbsp; 
+                <i class="text-muted">
+                    <i class="fa fa-user"></i> {{ $article->user->name}} ({{$article->user->email}})
+                    &nbsp; 
+                    <i class="text-right">
+                        <i class="fa fa-clock-o"></i> {{$article->created_at->format('Y-m-d')}}
+                    </i>
+                </i>
+            </h6>    
             <button class="btn__show__article btn btn-info" data-id = "{{$article->id}}">
                 {{$article->title}}
+            </button>
         </h4>
-
-        <p class="text-muted">
-            <i class="fa fa-user"></i> {{ $article->user->name}} ({{$article->user->email}})
-            <i class="text-right">
-                <i class="fa fa-clock-o"></i> {{$article->created_at->format('Y-m-d')}}
-            </i>
-        </p>
+        <div class="divdiv">
         @if($viewName === 'articles.index')
         @include('tags.partial.list',['tags' => $article->tags])
         @endif
@@ -20,5 +26,6 @@
         @if($viewName === 'articles.show')
         @include('attachments.partial.list', ['attachments' => $article->attachments])
         @endif
+        </div>
     </div>
 </div>

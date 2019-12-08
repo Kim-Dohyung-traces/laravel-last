@@ -2,22 +2,12 @@
 
 @section('content')
 @php $viewName = 'articles.show'; @endphp
-<div class="page-header">
-    <h4>
-        <a href="{{ route('articles.index') }}">
-            게시글
-        </a>
-        <small>
-            / {{ $article->id }}번째 게시글
-        </small>
-    </h4>
-</div>
-
-
 <div class ="row container__article">
 
     <div class="list__article">
         <article class ="article_show" data-id="{{ $article->id }}">
+            <h3>게시글
+            </h3> 
             @include('articles.partial.article', compact('article'))
             <div>
                 <p>{!! $article->content !!}</p>

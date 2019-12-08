@@ -15,7 +15,8 @@ class ArticlesController extends Controller
         \Log::info($slug);
         //$slug는 태그로 검색할 경우에만 존재함
         $query = $slug ? \App\Tag::whereSlug($slug)->firstOrFail()->articles() : new \App\Article;
-        $articles = $query->latest()->paginate(10); #게시글 목록(위의 query조건에 맞는)
+        // $articles = $query->latest()->paginate(10); #게시글 목록(위의 query조건에 맞는)
+        $articles = $query->orderBy('id','desc')->paginate(10); #게시글 목록(위의 query조건에 맞는)
         $article = new \App\Article;        //게시글 전체
         \Log::info($articles);
         return view('articles.index', compact('article', 'articles'));
