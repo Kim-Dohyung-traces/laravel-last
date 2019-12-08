@@ -2,6 +2,10 @@
 /public/hot
 /public/files/**
 !/public/files/default.png
+/public/files2/**
+!/wdj6\public\files2/default.png
+!/public/files2/default2.png
+!/public\files2/default6.png
 /public/storage
 /storage/*.key
 /vendor
