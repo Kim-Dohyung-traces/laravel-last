@@ -38,6 +38,12 @@
         <div class="create-form">
             @include('programs.create')
         </div>
+        <div class="edit-div">
+            @forelse ($programs as $program)
+                @include('programs.edit',compact('program'))
+            @empty
+            @endforelse
+        </div>
         <div class="show-divbox">
             <div class="show-div">
                 @forelse ($programs as $program)
@@ -82,6 +88,7 @@
             $('.page-header').css("display","block");
             $('.carousel-div').css("display","block");
             $(`.show`).css("display","none");
+            $(`.edit-form`).css("display","none");
         }   
 
         function show(program_id){
@@ -141,6 +148,46 @@
                     $('.carousel-divbox').load('/programs .carousel-div').css("display","block");
                 });
             }
+        }
+        function edit(program_id){
+            $.ajax({
+                type: "get",
+                url: `/programs/${program_id}/edit`,
+                data: program_id,
+                error:function(request,status,error){
+                alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                },
+            }).then(function(program){  
+                console.log(program); 
+                $('.program-div').load('/programs .program-div').css("display","none");
+                $(`.edit-form`).css("display","none");
+                $(`.edit${program_id}`).css("display","block");
+                $('.page-header').css("display","none");
+                $(`.show-divbox`).load('/programs .show-div');
+                $('.carousel-divbox').load('/programs .carousel-div').css("display","none");
+                
+            });
+        }
+        function update(program_id){
+            var form = $('#program_edit_form')[0];
+            var data = new FormData(form);
+            console.log(form);
+            data.append('_method','PUT');
+            $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+            $.ajax({
+                type:'POST',
+                url: `/programs/${program_id}`,
+                data: data,
+                processData:false,
+                contentType:false,
+            }).then(function(){    
+                $('.program-div').load('/programs .program-div').css("display","block");
+                $('.create-form').css("display","none");
+                $('.page-header').css("display","block");
+                $(`.show-divbox`).load('/programs .show-div');
+                $(`.edit-form`).css("display","none");
+                $('.carousel-divbox').load('/programs .carousel-div').css("display","block");
+            });
         }
     </script>
 @stop
@@ -327,6 +374,9 @@
             margin-left:auto;
             margin-right:auto;
             text-align: center;
+        }
+        .edit-form{
+            display:none;
         }
     </style>
 @stop

@@ -62,7 +62,7 @@ class ProgramsController extends Controller
                     'bytes' => $file->getSize(),
                     'mime' => $file->getClientMimeType()
                 ]);
-                $file->move(program_attachments_path3(), $filename);
+                $file->move(program_attachments_path(), $filename);
             }
         }
 
@@ -93,9 +93,11 @@ class ProgramsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(\App\Program $program)
     {
-        //
+        $this->authorize('edit', $program);
+
+        return response()->json([], 204);
     }
 
     /**
@@ -105,9 +107,14 @@ class ProgramsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(\App\Http\Requests\ProgramsRequest $request, \App\Program $program)
     {
-        //
+        \Log::info($request->all());
+        $this->authorize('update', $program);
+        $program->update($request->all());
+        //store메서드에도 있음
+        flash()->success('수정하신 내용을 저장했습니다.');
+        return response()->json([], 204);
     }
     public function destroy(\App\Program $program)
     {   
