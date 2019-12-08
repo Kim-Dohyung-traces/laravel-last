@@ -26,7 +26,7 @@
 
         <div class="text-center action__article">
             @can('update', $article)
-            <button class="btn btn-info button__edit__articles">
+            <button class="btn btn-primary button__edit__articles">
                 <i class="fa fa-pencil"></i>
                 글 수정
             @endcan

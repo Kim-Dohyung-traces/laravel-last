@@ -19,8 +19,8 @@
     </form>
 
     <div class="form-group text-center">
-        <button class="button__update__articles btn btn-primary">
-            수정하기
+        <button class="button__update__articles btn btn-success">
+            수정 하기
         </button>
     </div>
 @stop

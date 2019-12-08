@@ -5,9 +5,7 @@
 
   <div class="media-body">
     <h5 class="media-heading">
-      <a href="{{ gravatar_profile_url($comment->user->email) }}">
         {{ $comment->user->name }}
-      </a>
       <small>
         {{ $comment->created_at->diffForHumans() }}
       </small>
