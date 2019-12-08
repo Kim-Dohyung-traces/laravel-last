@@ -173,7 +173,6 @@
         .card {
         position: relative;
         display: -webkit-box;
-        display: flex;
         min-width: 0;
         word-wrap: break-word;
         background-color: #fff;

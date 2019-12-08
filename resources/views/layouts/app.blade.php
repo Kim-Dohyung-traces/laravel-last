@@ -44,7 +44,6 @@
     @yield('script')
 
     <script>
-    <link rel="stylesheet" href ="{{ asset('css/app2.css') }}" />
     
     </script>
 
