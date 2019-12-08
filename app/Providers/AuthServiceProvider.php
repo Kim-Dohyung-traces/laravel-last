@@ -28,7 +28,21 @@ class AuthServiceProvider extends ServiceProvider
 
         //삭제권한
         Gate::define('delete', function ($user, $model) {
+            \Log::info("모델 유저 : " . $model->user_id);
             return $user->id === $model->user_id;
         });
+        //멤버추가
+        Gate::define('member_create', function($user, $model){
+            return $user->id <= 7;
+        });
+        //멤버 수정, 삭제
+        Gate::define('member_edit', function($user, $model){
+            \Log::info("접속 유저 : " . $user->id);
+            \Log::info("모델 유저 : " . $model->id);
+            return $user->id - 1 === $model->id;
+
+        });
+
+        
     }
 }
