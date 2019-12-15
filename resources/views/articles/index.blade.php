@@ -79,6 +79,8 @@ $(document).on('click', '.btn__create__article', function(e) {
     el_container.toggle('fast').focus();
     el_create.toggle('fast').focus();
     $('.btn__create__article').html(text);
+    
+
 });
 
 //게시글 작성
@@ -94,11 +96,15 @@ $(document).on('click', '.btn__save__article', function(e) {
         contentType: false,
     }).then(function (){
         article[article_id] = 0;
+        count = 0;
+        var text= count%2 == 0 ? " 새 글 쓰기" : " 돌아가기"
         $('.main_article').load('/articles .container__article');
         var el_create = $('.new_article');
         var el_container = $('.container__article');
         el_container.toggle('fast').focus();
         el_create.toggle('fast').focus();
+        $('.form-control').val("");
+        $('.btn__create__article').html(text);
     });
 });
 

@@ -2,8 +2,8 @@
 
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}">   
-    <div>
-        <div class="page-header">
+    <div class="member-header">
+        <div class="member-title">
             <h2>조원소개</h2>
         </div>
         @can('member_create', $members)
@@ -18,10 +18,8 @@
         @forelse ($members as $member)
             <div class="memberDiv" id="memberDiv{{$member->id}}">
                 <div class="imgDiv">
-                    <!-- <img class="img-thumbnail" src="http://127.0.0.1:8000/files2/{{$member->filename}}" alt="11"
-                    onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')"></img> -->
-                    <img class="img-thumbnail" src="http://btrya23.iptime.org:8000/files2/{{$member->filename}}" alt="11"
-                    onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')"></img>
+                    <img class="img-thumbnail" src="http://127.0.0.1:8000/files2/{{$member->filename}}" alt="memberImg"
+                    onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')">
                 </div>
                 <div class="infoDiv">
                     <label onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')"

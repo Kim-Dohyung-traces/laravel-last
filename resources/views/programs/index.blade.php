@@ -114,6 +114,7 @@
         function store(){
             var form = $('#program_create_form')[0];
             var data = new FormData(form);
+            console.log(data);
             $.ajax({
                 type:'POST',
                 url: 'programs',

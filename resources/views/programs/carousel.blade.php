@@ -10,21 +10,22 @@
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
       <!-- <img class="carousel-img" src="files\programs\{{\App\Program_attachment::whereId(\App\Program::max('id'))->first()->filename}}" alt="1"> -->
-      <img class="carousel-img" src="http://btrya23.iptime.org:8000/files3/{{\App\Program_attachment::whereId(\App\Program::max('id'))->first()->filename}}" alt="1">
+      <!-- <img class="carousel-img" src="http://btrya23.iptime.org:8000/files3/{{\App\Program_attachment::whereId(\App\Program::max('id'))->first()->filename}}" alt="1"> -->
+      <img class="carousel-img" src="http://127.0.0.1:8000/files3/{{\App\Program_attachment::whereId(\App\Program::max('id'))->first()->filename}}" alt="1">
       <div class="carousel-caption">
         <h1 class="carousel-title">{{App\Program::whereId(\App\Program::max('id'))->first()->title}}</h1>
       </div>
     </div>
     <div class="carousel-item">
       <!-- <img class="carousel-img" src="files\programs\{{\App\Program_attachment::whereId(\App\Program::whereNotIn('id',[\App\Program::max('id')])->max('id'))->first()->filename}}" alt="2"> -->
-      <img class="carousel-img" src="http://btrya23.iptime.org:8000/files3/{{\App\Program_attachment::whereId(\App\Program::whereNotIn('id',[\App\Program::max('id')])->max('id'))->first()->filename}}" alt="2">
+      <img class="carousel-img" src="http://127.0.0.1:8000/files3/{{\App\Program_attachment::whereId(\App\Program::whereNotIn('id',[\App\Program::max('id')])->max('id'))->first()->filename}}" alt="2">
       <div class="carousel-caption">
         <h1 class="carousel-title">{{App\Program::whereId(\App\Program::whereNotIn('id',[\App\Program::max('id')])->max('id'))->first()->title}}</h1>
       </div>
     </div>
     <div class="carousel-item ">
       <!-- <img class="carousel-img" src="files\programs\{{\App\Program_attachment::whereId(\App\Program::whereNotIn('id',[\App\Program::max('id'),\App\Program::whereNotIn('id',[\App\Program::max('id')])->max('id')])->max('id'))->first()->filename}}" alt="3"> -->
-      <img class="carousel-img" src="http://btrya23.iptime.org:8000/files3/{{\App\Program_attachment::whereId(\App\Program::whereNotIn('id',[\App\Program::max('id'),\App\Program::whereNotIn('id',[\App\Program::max('id')])->max('id')])->max('id'))->first()->filename}}" alt="3">
+      <img class="carousel-img" src="http://127.0.0.1:8000/files3/{{\App\Program_attachment::whereId(\App\Program::whereNotIn('id',[\App\Program::max('id'),\App\Program::whereNotIn('id',[\App\Program::max('id')])->max('id')])->max('id'))->first()->filename}}" alt="3">
       <div class="carousel-caption">
         <h1 class="carousel-title">{{App\Program::whereId(\App\Program::whereNotIn('id',[\App\Program::max('id'),\App\Program::whereNotIn('id',[\App\Program::max('id')])->max('id')])->max('id'))->first()->title}}</h1>
       </div>
