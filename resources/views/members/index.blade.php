@@ -6,21 +6,21 @@
         <div class="member-title">
             <h2>조원소개</h2>
         </div>
-        @can('member_create', $members)
-        <label class="btn btn-primary btnCreate" onclick="create()">멤버 추가</label>
-        @endcan
-
-        <div class="createDiv" id="createDiv">
-            <hr />
+        <div class="member-header-button">
+            @can('member_create', $members)
+            <label class="btn btn-primary btnCreate" onclick="create()">멤버 추가</label>
+            @endcan
         </div>
     </div>
-    <div class="contentDiv" id="contentDiv">
+    <div class="createDiv" id="createDiv"></div>
+    <div class="member-maindiv" id="contentDiv">
         @forelse ($members as $member)
-            <div class="memberDiv" id="memberDiv{{$member->id}}">
+            <div class="memberDiv col-md-3" id="memberDiv{{$member->id}}">
                 <div class="imgDiv">
                     <img class="img-thumbnail" src="http://127.0.0.1:8000/files2/{{$member->filename}}" alt="memberImg"
                     onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')">
                 </div>
+
                 <div class="infoDiv">
                     <label onclick="imgClick({{$member->id}},'{{$member->name}}','{{$member->comments}}')"
                     class="btn btn-info" onclick="edit({{$member->id}})">정보 확인</label>
@@ -34,6 +34,7 @@
                 </div>
                 <div class="editDiv" id="editDiv{{$member->id}}">
                 </div>  
+
             </div>
         @empty
         @endforelse
@@ -134,8 +135,8 @@
                     editDiv.className = "editDiv";
                     nameDiv.id= "nameDiv"+data.id;
                     commentsDiv.id = "comments"+data.id;
-                    img.src="http://btrya23.iptime.org:8000/files2/"+data.filename;
-                    // img.src="http://127.0.0.1:8000/files2/"+data.filename;
+                    // img.src="http://btrya23.iptime.org:8000/files2/"+data.filename;
+                    img.src="http://127.0.0.1:8000/files2/"+data.filename;
                     img.className = "img-thumbnail";
                     img.alt= "사진 안보여";
                     $(img).on('click',function(){
@@ -320,40 +321,27 @@
                 console.log("엘스문");
                 editDiv.innerHTML = '';
                 editCheck=1;
-                                    }
+            }
         })
     
     }
-    
 </script>
 @stop
 @section('style')
-        <style>
-            .memberDiv{
-                display:inline-block;
-            }
-            .conDiv, .btnDiv, .infoDiv{
-                width:177px;
-            }
-            .btn-info{
-                width:100%;
-                margin-top: 10px;
-                color: white;
-            }
-            .imgDiv{
-                width:177px;
-                height:236px;
-            }
-            img{
-                width:100%;
-                height:100%;
-            }
-            .btnDiv > label {
-                width:48%;
-            }
-            .btn-success{
-                width:98%;
-                margin:1%;
-            }
-        </style>
+    <style>
+        img{
+            max-width:100%;
+            height:100%;
+        }
+        .btn-success{
+            width:98%;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .btn-info{
+            width:100%;
+            margin-top: 10px;
+            color: white;
+        }
+    </style>
 @stop

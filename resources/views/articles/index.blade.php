@@ -119,6 +119,7 @@ $(document).on('click', '.btn__tag__article', function(e) {
         $('.main_article').load(`tags/${tag}/articles .container__article`);
     });
 });
+
 //게시글 눌렀을 경우
 $(document).on('click', '.btn__show__article', function(e) {
     article_id = $(this).closest('.btn__show__article').data('id');
@@ -280,6 +281,7 @@ $(document).on('click', '.btn__vote__comment', function(e) {
         $('.container__comment').load(`/articles/${article_id} .container__comment`);
     });
 });
+
 </script>
 @endsection
 
