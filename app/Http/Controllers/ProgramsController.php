@@ -86,6 +86,8 @@ class ProgramsController extends Controller
      */
     public function update(\App\Http\Requests\ProgramsRequest $request, \App\Program $program)
     {
+           
+        
         \Log::info($request->all());
         $this->authorize('update', $program);
         $program->update($request->all());
